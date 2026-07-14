@@ -3,9 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pdf-to-Speech</title>
+    <title>Vox-PDF</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/styles.css')}}"
+    >
 </head>
 <body>
-    <h1>Home page</h1>
+    <div class="container">
+        <div class="title-dash"></div>
+        <div class="header">
+            <p class="title">Vox-PDF</p>
+            <p class="title-desc">CONVERT YOUR PDF DOCUMENTS INTO NATURAL-SOUNDING SPEECH.</p>
+        </div>
+        <div class="center-line"></div>
+        <div class="center-line"></div>
+        <div class="body-box">
+            <button id="upload-btn">Choose File</button>
+            <div class="sub-center-line"></div>
+            <div class="sub-center-line"></div>
+            <div class="selected-file">
+                
+            </div>
+            
+            <div class="sub-center-line"></div>
+            <div class="sub-center-line"></div>
+            
+            <button id="convert-btn" disabled>Convert</button>
+            
+            <div class="sub-center-line"></div>
+            <div class="sub-center-line"></div>
+            
+            <div class="audio-container">
+                <audio controls>
+                    <!-- <source src="{{ url_for('static', filename='audio/podcast.mp3') }}" type="audio/mpeg"> -->
+                </audio>
+            </div>
+        </div>
+        
+    </div>
 </body>
 </html>

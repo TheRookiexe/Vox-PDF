@@ -1,0 +1,153 @@
+@import url("fontawesome-all.min.css");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Arvo:700");
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body, div, span, applet, object,
+iframe, p, blockquote,
+pre, a, abbr, acronym, address, big, cite,
+code, del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b,
+u, i, center, dl, dt, dd, ol, ul, li, fieldset,
+form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption,
+footer, header, hgroup, menu, nav, output, ruby,
+section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+html,body{
+    background-color: #f0f0f0;
+    height: 100vh;
+}
+
+body, input, textarea, select {
+	font-family: 'Arvo', sans-serif;
+	font-weight: 300;
+	line-height: 1.65em;
+	font-size: 15pt;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header{
+    margin: 20px;
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+.title-dash{
+    height: 50px;
+    width: 100%;
+    background-color: #322e2e;
+}
+
+.title{
+    font-size: 80px;
+    color: #e64040;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-shadow: 1px 1px 2px rgb(101, 47, 47);
+}
+
+.title-desc{
+    font-family: 'source sans pro';
+    font-size: 20px;
+    color: black;
+    letter-spacing: 4px;
+}
+
+.center-line{
+    background-color: #322e2e;
+    width: 90%;
+    height: 1px;
+    margin-bottom: 2px;
+}
+
+.body-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#upload-btn, #convert-btn{
+    height: 80px;
+    width: 230px;
+    margin: 10px;
+    padding: 10px;
+    outline: #e64040;
+    color: #e64040;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    background-color: #322e2e;
+    text-shadow: 1px 1px 2px #e64040;
+    box-shadow: 2px 2px 4px gray;
+    border-radius: 10px;
+}
+
+#convert-btn:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed; 
+    opacity: 0.6;
+}
+
+.sub-center-line{
+    background-color: rgb(192, 190, 190);
+    opacity: 70%;
+    width: 50%;
+    height: 1px;
+    margin-bottom: 2px;
+}
+
+
+.selected-file, .audio-container{
+    background-color: rgb(222, 236, 172);
+    height: 70px;
+    width: 420px;
+    margin: 10px;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: #322e2e;
+    box-shadow: 2px 2px 4px gray;
+    text-align: center;
+}
+
+.audio-container {
+    display: none;
+    /* display: flex; */
+    justify-content: center; 
+    margin: 30px auto;
+    padding: 15px;
+    background-color: rgb(222, 236, 172); 
+    border-radius: 8px;
+    max-width: 400px;         
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.audio-container audio {
+    width: 100%; 
+}
