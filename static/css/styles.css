@@ -1,28 +1,8 @@
-@import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Arvo:700");
 
 *{
     margin: 0px;
     padding: 0px;
-}
-
-html, body, div, span, applet, object,
-iframe, p, blockquote,
-pre, a, abbr, acronym, address, big, cite,
-code, del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var, b,
-u, i, center, dl, dt, dd, ol, ul, li, fieldset,
-form, label, legend, table, caption, tbody,
-tfoot, thead, tr, th, td, article, aside,
-canvas, details, embed, figure, figcaption,
-footer, header, hgroup, menu, nav, output, ruby,
-section, summary, time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
 }
 
 html,body{
@@ -129,11 +109,15 @@ body, input, textarea, select {
     height: 70px;
     width: 420px;
     margin: 10px;
+    border-style: solid;
     border-width: 2px;
-    border-radius: 10px;
     border-color: #322e2e;
+    border-radius: 10px;
     box-shadow: 2px 2px 4px gray;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; 
 }
 
 .audio-container {
@@ -150,4 +134,25 @@ body, input, textarea, select {
 
 .audio-container audio {
     width: 100%; 
+}
+
+#selected-file-name{
+    font-family: 'source sans pro', sans-serif !important; 
+    font-weight: 500 !important;
+    text-shadow: none !important;
+    font-size: 20px;
+    color: #e64040;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+#delete-file-btn {
+    color: #e64040; 
+    font-size: 22px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#delete-file-btn:hover {
+    transform: scale(1.2); 
 }
