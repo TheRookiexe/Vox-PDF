@@ -20,9 +20,9 @@ def upload():
     # featching and saving pdf
 
     uploaded_file = request.files["pdf"]
-    upload_dir = "./uploads"
+    upload_dir = Path("./uploads")
     file_name = secure_filename(uploaded_file.filename)
-    path  = Path(upload_dir).joinpath(file_name)
+    path  = upload_dir.joinpath(file_name)
     uploaded_file.save(path)
     print(path)
 
@@ -35,6 +35,13 @@ def upload():
             text.append(page_text)
     pdf_text = '\n\n'.join(text)
     print(pdf_text)
+
+    # writing outputs 
+    output_dir = Path("./outputs")
+    extension_mp3 = path.with_suffix(".mp3")
+    output_file_name = extension_mp3.name
+    output_path = output_dir.joinpath(output_file_name)
+    print(output_path)
 
     if uploaded_file.filename=='':
         return {
