@@ -15,8 +15,8 @@ fileInput.addEventListener('change', function(){
         fileNameDisplay.style.color = "green";
         convertBtn.disabled = false;
         delBtn.style.display = "block";
-        console.log(fileInput.files)
-        console.log(fileInput.files[0])
+        // console.log(fileInput.files)
+        // console.log(fileInput.files[0])
 
     } else {
         resetFileSelection();
@@ -41,7 +41,20 @@ convertBtn.addEventListener('click', async(e) => {
                 body: formData 
             }
         )
-        console.log(response)
+        const result = await response.blob(); 
+        const objectURL = URL.createObjectURL(result);
+        const disposition = response.headers.get('content-disposition');
+        const matches = disposition ? disposition.match(/filename="?([^"]+)"?/) : null;
+        const downloadFileName = matches ? matches[1] : 'downloaded_file';
+        const link = document.createElement('a');
+        link.href = objectURL;
+        link.download = downloadFileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        console.log(downloadFileName);
+        console.log(result);
+        URL.revokeObjectURL(objectURL);
     } finally {
         convertBtn.disabled = true
         convertBtn.textContent = "Uploading..."

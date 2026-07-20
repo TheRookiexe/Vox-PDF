@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from werkzeug.utils import secure_filename
 from pathlib import Path
 from pypdf import PdfReader
@@ -59,10 +59,8 @@ def upload():
             'message': 'The uploaded file is empty'
         }
     print(uploaded_file.filename)
-    return {
-        'success': True,
-        'message': 'PDF uploaded successfully.'
-    }
+    return send_file(output_path, download_name=output_file_name, as_attachment=True)
+    
 
 if __name__ == "__main__":
     app.run(debug=True, port=5002)
