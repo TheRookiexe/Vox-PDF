@@ -30,10 +30,11 @@ delBtn.addEventListener('click', function(e){
 
 convertBtn.addEventListener('click', async(e) => {
     convertBtn.disabled = true;
-    convertBtn.textContent = "uploading..."
+    // convertBtn.textContent = "uploading..."
     const formData = new FormData()
     formData.append('pdf', fileInput.files[0])
     try{
+        convertBtn.textContent = "uploading..."
         const response = await fetch(
             "/upload",
             {
@@ -41,6 +42,7 @@ convertBtn.addEventListener('click', async(e) => {
                 body: formData 
             }
         )
+        convertBtn.textContent = "Processing..."
         const result = await response.blob(); 
         const objectURL = URL.createObjectURL(result);
         const disposition = response.headers.get('content-disposition');
@@ -57,7 +59,8 @@ convertBtn.addEventListener('click', async(e) => {
         URL.revokeObjectURL(objectURL);
     } finally {
         convertBtn.disabled = true
-        convertBtn.textContent = "Uploading..."
+        convertBtn.style.backgroundColor = 'green'
+        convertBtn.textContent = "Downloaded"
     }
 });
 
