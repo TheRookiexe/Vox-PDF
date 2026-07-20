@@ -30,7 +30,6 @@ delBtn.addEventListener('click', function(e){
 
 convertBtn.addEventListener('click', async(e) => {
     convertBtn.disabled = true;
-    // convertBtn.textContent = "uploading..."
     const formData = new FormData()
     formData.append('pdf', fileInput.files[0])
     try{
@@ -57,6 +56,13 @@ convertBtn.addEventListener('click', async(e) => {
         console.log(downloadFileName);
         console.log(result);
         URL.revokeObjectURL(objectURL);
+    } catch (error) {
+        console.error("Download failed:", error);
+        convertBtn.style.backgroundColor = "red";
+        convertBtn.style.color = "white";
+        convertBtn.textContent = "Failed.";
+        convertBtn.disabled = false;
+    
     } finally {
         convertBtn.disabled = true
         convertBtn.style.backgroundColor = "green";
