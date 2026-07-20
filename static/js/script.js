@@ -59,8 +59,9 @@ convertBtn.addEventListener('click', async(e) => {
         URL.revokeObjectURL(objectURL);
     } finally {
         convertBtn.disabled = true
-        convertBtn.style.backgroundColor = 'green'
-        convertBtn.textContent = "Downloaded"
+        convertBtn.style.backgroundColor = "green";
+        convertBtn.style.color = "white";
+        convertBtn.textContent = "Downloaded";
     }
 });
 
