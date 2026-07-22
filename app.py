@@ -7,6 +7,12 @@ import asyncio
 
 app = Flask(__name__)
 
+output_dir = Path("./outputs")
+output_dir.mkdir(parents=True, exist_ok=True)
+
+upload_dir = Path("./uploads")
+upload_dir.mkdir(parents=True, exist_ok=True)
+
 async def generate_audio(text, output_file_path):
     voice = "en-IN-NeerjaNeural"
     comms = edge_tts.Communicate(text, voice)
@@ -26,7 +32,6 @@ def upload():
     
     # featching and saving pdf
     uploaded_file = request.files["pdf"]
-    upload_dir = Path("./uploads")
     file_name = secure_filename(uploaded_file.filename)
     path  = upload_dir.joinpath(file_name)
     uploaded_file.save(path)
@@ -43,7 +48,6 @@ def upload():
     print(len(pdf_text))
 
     # writing outputs 
-    output_dir = Path("./outputs")
     extension_mp3 = path.with_suffix(".mp3")
     output_file_name = extension_mp3.name
     output_path = output_dir.joinpath(output_file_name)
