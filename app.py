@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, send_file, after_this_request
+from config import UPLOAD_DIR, OUTPUT_DIR, VOICE
 from werkzeug.utils import secure_filename
 from pathlib import Path
 from pypdf import PdfReader
@@ -7,14 +8,8 @@ import asyncio
 
 app = Flask(__name__)
 
-output_dir = Path("./outputs")
-output_dir.mkdir(parents=True, exist_ok=True)
-
-upload_dir = Path("./uploads")
-upload_dir.mkdir(parents=True, exist_ok=True)
-
 async def generate_audio(text, output_file_path):
-    voice = "en-IN-NeerjaNeural"
+    voice = VOICE
     comms = edge_tts.Communicate(text, voice)
     await comms.save(output_file_path)
 
@@ -33,9 +28,9 @@ def upload():
     # featching and saving pdf
     uploaded_file = request.files["pdf"]
     file_name = secure_filename(uploaded_file.filename)
-    path  = upload_dir.joinpath(file_name)
+    path  = UPLOAD_DIR.joinpath(file_name)
     uploaded_file.save(path)
-    print(path)
+
 
     # reading pdf
     text = []
@@ -45,12 +40,12 @@ def upload():
         if page_text is not None:
             text.append(page_text)
     pdf_text = '\n\n'.join(text)
-    print(len(pdf_text))
+
 
     # writing outputs 
     extension_mp3 = path.with_suffix(".mp3")
     output_file_name = extension_mp3.name
-    output_path = output_dir.joinpath(output_file_name)
+    output_path = OUTPUT_DIR.joinpath(output_file_name)
     
     # converting text to audio
     asyncio.run(generate_audio(text=pdf_text, output_file_path=output_path))
