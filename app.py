@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, send_file, after_this_request
 from config import UPLOAD_DIR, OUTPUT_DIR, VOICE
 from werkzeug.utils import secure_filename
-from pathlib import Path
 from pypdf import PdfReader
 import edge_tts
 import asyncio
+import os
 
 app = Flask(__name__)
 
@@ -76,4 +76,5 @@ def upload():
     
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5002)
+    port = int(os.environ.get("PORT", 5002))
+    app.run(debug=True, port=port, host="0.0.0.0")
